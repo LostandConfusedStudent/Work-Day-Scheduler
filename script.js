@@ -41,15 +41,22 @@ function background() {
   }
 
   $(document).ready(function() {
-    // startPage();
+    startPage();
     background();
 
     // Buttons to save input to local storage
     $(".saveBtn").on("click", function() {
         yourInput = $(this).siblings(".form").val().trim();
-        console.log(yourInput);
+        console.log(yourInput + " Save button pressed");
         yourHours = $(this).siblings(".input").text().trim();
         localStorage.setItem(yourHours, JSON.stringify(yourInput));
+    });
+
+    // Button to erase input from local storage
+    $("#clearAll").on("click", function() {
+        localStorage.clear();
+        startPage();
+        console.log("Clear button pressed");
     });
   });
 
