@@ -12,9 +12,46 @@ var invervalSeconds = setInterval(function() {
 
 
 // Define variables for every hour
+var hours = moment().hours();
+var yourInput;
+var yourHours;
+
+var nine = $("#9am");
 
 // Function to start the page up
+function startPage() {
+    var startNine = JSON.parse(localStorage.getItem("09:00am"))
+    nine.val(startNine);
+}
 
-// Function to change colors of time blocks
+// Function to change colors of time blocks. Current hour is red, past hour is gray, and future hour is green
+function background() {
+      
+    $(".form").each(function() {
+        var time = parseInt($(this).attr("id"));
+        hours = parseInt(hours);
+        if (hours > time) {
+            $(this).addClass("past");
+        } else if (hours < time) {
+            $(this).addClass("future");
+        } else {
+            $(this).addClass("present");
+        }
+    });
+  }
 
-// Buttons to save input to local storage
+  $(document).ready(function() {
+    // startPage();
+    background();
+
+    // Buttons to save input to local storage
+    $(".saveBtn").on("click", function() {
+        yourInput = $(this).siblings(".form").val().trim();
+        console.log(yourInput);
+        yourHours = $(this).siblings(".input").text().trim();
+        localStorage.setItem(yourHours, JSON.stringify(yourInput));
+    });
+  });
+
+
+
