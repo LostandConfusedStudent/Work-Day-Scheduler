@@ -6,6 +6,15 @@ console.log(today);
 console.log(seconds);
 
 // Display today's date on html page
-$("#currentDay").html(today + ":" + seconds);
+var invervalSeconds = setInterval(function() {
+    $("#currentDay").html(today + ":" + seconds);
+});
+
 
 // Define variables for every hour
+
+// Function to start the page up
+
+// Function to change colors of time blocks
+
+// Buttons to save input to local storage
